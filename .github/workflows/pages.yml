@@ -23,14 +23,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Build browser site
+        shell: bash
+        run: |
+          set -e
+          rm -rf site
+          mkdir site
+          cp index.html style.css app.js site/
+          base64 --decode home.jpg.base64.txt > site/home.jpg
+          test -s site/home.jpg
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: site
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
