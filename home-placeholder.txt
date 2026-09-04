@@ -1,0 +1,1 @@
+Binary Home artwork is kept embedded in index.html for the live prototype.
