@@ -31,8 +31,8 @@ jobs:
           rm -rf site
           mkdir -p site/assets
           cp index.html style.css app.js site/
-          cp assets/home-master.webp site/assets/home-master.webp
-          test -s site/assets/home-master.webp
+          cp assets/home-master.jpg site/assets/home-master.jpg
+          test -s site/assets/home-master.jpg
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
