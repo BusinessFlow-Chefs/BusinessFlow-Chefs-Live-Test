@@ -29,10 +29,10 @@ jobs:
         run: |
           set -e
           rm -rf site
-          mkdir site
+          mkdir -p site/assets
           cp index.html style.css app.js site/
-          base64 --decode home.jpg.base64.txt > site/home.jpg
-          test -s site/home.jpg
+          cp assets/home-master.webp site/assets/home-master.webp
+          test -s site/assets/home-master.webp
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
