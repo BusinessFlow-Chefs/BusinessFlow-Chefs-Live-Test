@@ -32,7 +32,9 @@ jobs:
           node --check bf-platform.js
           node --check bf-menu.js
           node --check bf-menu-themes.js
+          node --check bf-menu-structure.js
           node --check bf-recipes.js
+          node --check bf-recipes-courses.js
           node --check bf-stock.js
           node --check bf-sourcing.js
           node --check app.js
@@ -50,10 +52,15 @@ jobs:
           grep -q 'bf-core.js' index.html
           grep -q 'bf-core.js' menu-builder.html
           grep -q 'bf-menu-themes.js' menu-builder.html
+          grep -q 'bf-menu-structure.js' menu-builder.html
+          grep -q 'bf-recipes-courses.js' menu-builder.html
+          grep -q 'bf-recipes-courses.js' dish-details.html
+          grep -q 'bf-recipes-courses.js' provisioning.html
           grep -q 'getNightThemes' bf-menu.js
           grep -q 'French Riviera Night' bf-menu-themes.js
           grep -q 'Chef’s Tasting Menu' bf-menu-themes.js
-          grep -q 'bf-recipes.js' dish-details.html
+          grep -q 'compositionIssues' bf-menu-structure.js
+          grep -q 'buildDinnerServiceSteps' bf-recipes-courses.js
           grep -q 'bf-stock.js' inventory.html
           grep -q 'bf-stock.js' provisioning.html
           grep -q 'bf-sourcing.js' provisioning.html
