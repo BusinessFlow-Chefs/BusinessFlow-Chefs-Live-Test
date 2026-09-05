@@ -13,7 +13,7 @@
 <section class="next-card bf-card-gold"><div><div class="bf-eyebrow">NEXT IN THE FLOW</div><b>Open a dish for exact prep instructions, or move into stock and provisioning</b></div><div class="next-actions"><button class="bf-btn bf-btn-secondary" onclick="location.href='provisioning.html'">Provisioning</button><button class="bf-btn bf-btn-primary" onclick="openFirstRecipe()">Recipes →</button></div></section>
 </main>
 <div class="alt-layer" id="altLayer" onclick="if(event.target===this)closeAlternatives()"><section class="alt-panel"><div class="alt-head"><div><div class="bf-eyebrow">CHEF CHOICE</div><h2>Recommended alternatives</h2><p id="altFor"></p></div><button class="bf-round" onclick="closeAlternatives()">×</button></div><div class="alt-list" id="altList"></div></section></div>
-<script src="bf-platform.js"></script><script src="bf-core.js"></script><script src="bf-menu.js"></script><script src="bf-recipes.js"></script>
+<script src="bf-platform.js"></script><script src="bf-core.js"></script><script src="bf-menu.js"></script><script src="bf-menu-themes.js"></script><script src="bf-recipes.js"></script>
 <script>
 const core=window.BusinessFlowCore,menu=window.BusinessFlowMenu,recipes=window.BusinessFlowRecipes,$=id=>document.getElementById(id);let altDishId=null;
 function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
