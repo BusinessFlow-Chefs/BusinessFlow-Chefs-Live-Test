@@ -24,13 +24,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: BusinessFlow static QA
+        shell: bash
+        run: |
+          set -e
+          node --check bf-core.js
+          node --check bf-platform.js
+          node --check app.js
+          test -f manifest.webmanifest
+          test -f sw.js
+          grep -q 'bf-core.js' index.html
+          grep -q 'bf-core.js' service-sequence.html
+          grep -q 'bf-core.js' chef-mode.html
+          if grep -R -n 'oaiusercontent.com\|sdmntprdenmarkeast' index.html service-sequence.html chef-mode.html; then
+            echo 'Temporary external visual URL found in core operational flow.'
+            exit 1
+          fi
+
       - name: Build browser site
         shell: bash
         run: |
           set -e
           rm -rf site
           mkdir -p site
-          cp *.html *.css *.js site/ 2>/dev/null || true
+          cp *.html *.css *.js *.webmanifest site/ 2>/dev/null || true
           if [ -d assets ]; then cp -R assets site/assets; fi
 
       - name: Configure Pages
