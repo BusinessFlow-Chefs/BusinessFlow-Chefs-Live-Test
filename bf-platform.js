@@ -3,10 +3,13 @@
 
 const DEVICE_KEY='bf.device.id.v1';
 const NOTIFY_KEY='bf.notifications.enabled.v1';
+const CORE_KEY='bf.core.v3';
+const OLD_STATE_KEYS=['bf.core.v2','bf.core.v1','bfDinnerTime','bfGuests','bfHomeAlarm'];
 
 function uid(prefix){return `${prefix}_${Math.random().toString(36).slice(2,10)}_${Date.now().toString(36)}`;}
 function safeStorageGet(key){try{return localStorage.getItem(key);}catch(e){return null;}}
 function safeStorageSet(key,value){try{localStorage.setItem(key,value);return true;}catch(e){return false;}}
+function safeStorageRemove(key){try{localStorage.removeItem(key);return true;}catch(e){return false;}}
 
 function getDeviceId(){
   let id=safeStorageGet(DEVICE_KEY);
@@ -24,6 +27,47 @@ function detectEnvironment(){
 function systemTimeZone(){
   try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';}catch(e){return 'UTC';}
 }
+
+function freshCoreState(){
+  const now=new Date().toISOString();
+  return {
+    meta:{schemaVersion:3,revision:0,createdAt:now,updatedAt:now,lastMutationId:null},
+    charter:{id:'',name:'',status:'draft',guestCount:1,budget:0,currency:'EUR',departure:'',destination:'',startDate:'',endDate:'',timeZone:systemTimeZone(),notes:''},
+    guests:{items:[],allergySummary:[]},
+    menu:{status:'draft',theme:'',days:[],lockedDishIds:[]},
+    recipes:{items:{}},
+    services:{
+      breakfast:{id:'breakfast',label:'Breakfast',date:'',time:'08:30',status:'planned',steps:[],stockReserved:false},
+      lunch:{id:'lunch',label:'Lunch',date:'',time:'13:00',status:'planned',steps:[],stockReserved:false},
+      snack:{id:'snack',label:'Snack',date:'',time:'16:00',status:'cancelled',steps:[],stockReserved:false},
+      dinner:{id:'dinner',label:'Dinner',date:'',time:'19:30',status:'planned',steps:[],inventoryPlan:[],stockReserved:false}
+    },
+    inventory:{items:{}},
+    provisioning:{items:[]},
+    notifications:{items:[]},
+    preferences:{alarmEnabled:true},
+    featureFlags:{voice:true,offline:true,guestMemory:true,provisioning:true,inventory:true,analytics:false},
+    sync:{deviceId:getDeviceId(),status:'local',lastSyncedAt:null,pendingMutations:[],conflicts:[]},
+    audit:[]
+  };
+}
+
+function neutraliseLegacyDemoState(){
+  try{
+    OLD_STATE_KEYS.forEach(safeStorageRemove);
+    const raw=safeStorageGet(CORE_KEY);
+    if(!raw){safeStorageSet(CORE_KEY,JSON.stringify(freshCoreState()));return;}
+    const state=JSON.parse(raw);
+    const charter=state&&state.charter||{};
+    const inventory=state&&state.inventory&&state.inventory.items||{};
+    const legacyDemo=charter.id==='charter_demo'||charter.name==='Richardson Charter'||Object.prototype.hasOwnProperty.call(inventory,'seaBass');
+    if(legacyDemo)safeStorageSet(CORE_KEY,JSON.stringify(freshCoreState()));
+  }catch(e){
+    safeStorageSet(CORE_KEY,JSON.stringify(freshCoreState()));
+  }
+}
+
+neutraliseLegacyDemoState();
 
 const ROLE_PERMISSIONS={
   chef:new Set(['charter:read','charter:write','guest:read','guest:write','menu:read','menu:write','recipe:read','recipe:write','service:read','service:write','inventory:read','inventory:write','provisioning:read','provisioning:write','notifications:read','notifications:write']),
