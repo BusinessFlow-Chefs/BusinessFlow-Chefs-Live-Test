@@ -33,6 +33,7 @@ jobs:
           node --check bf-menu.js
           node --check bf-recipes.js
           node --check bf-stock.js
+          node --check bf-sourcing.js
           node --check app.js
           node --check sw.js
           test -f manifest.webmanifest
@@ -42,11 +43,19 @@ jobs:
           test -f dish-details.html
           test -f inventory.html
           test -f provisioning.html
+          test -f journey.html
+          test -f sourcing.html
+          test -f suppliers.html
           grep -q 'bf-core.js' index.html
           grep -q 'bf-core.js' menu-builder.html
+          grep -q 'getNightThemes' bf-menu.js
           grep -q 'bf-recipes.js' dish-details.html
           grep -q 'bf-stock.js' inventory.html
           grep -q 'bf-stock.js' provisioning.html
+          grep -q 'bf-sourcing.js' provisioning.html
+          grep -q 'bf-sourcing.js' journey.html
+          grep -q 'bf-sourcing.js' sourcing.html
+          grep -q 'bf-sourcing.js' suppliers.html
           grep -q 'bf-core.js' service-sequence.html
           grep -q 'bf-core.js' chef-mode.html
           if grep -R -n 'oaiusercontent.com\|sdmntprdenmarkeast' --include='*.html' .; then
