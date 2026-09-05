@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#020912"><title>BusinessFlow Chefs — Approved Home Test</title><link rel="stylesheet" href="style.css"></head><body>
 <main class="app" aria-label="BusinessFlow Chefs approved Home">
-  <img class="home-art" src="assets/home-master.jpg?v=3" alt="BusinessFlow Chefs approved Home design">
+  <img id="homeArt" class="home-art" alt="BusinessFlow Chefs approved Home design">
 
   <button class="hot" aria-label="Notifications" style="left:78.5%;top:4.5%;width:9%;height:5%" onclick="openSheet('notifications')"></button>
   <button class="hot" aria-label="Chef profile" style="left:87.5%;top:4.5%;width:11%;height:5%" onclick="openSheet('profile')"></button>
@@ -28,4 +28,5 @@
 
 <section id="sheet" class="sheet" onclick="if(event.target===this)closeSheet()"><div class="panel"><button class="btn ghost close" onclick="closeSheet()">Close</button><div id="sheetBody"></div></div></section>
 <section id="sage" class="sage" aria-label="SAGE workspace"><div class="sw"><div class="sh"><div><b class="gold">SAGE</b><div class="small">BusinessFlow culinary & operational assistant</div></div><button class="btn ghost" onclick="closeSage()">Home</button></div><button id="sageOrb" class="orb" onclick="startListening()" aria-label="Speak to SAGE">SAGE</button><div id="sageStatus" class="status">Tap SAGE, then speak</div><div class="card"><b>Today's Service</b><div class="grid" style="margin-top:12px"><div class="service">Breakfast<br><span class="green">08:30 · Complete</span></div><div class="service">Lunch<br><span class="green">13:00 · Complete</span></div><div class="service active">Dinner<br><span id="dinnerTime" class="gold">19:30 · 8 guests</span></div><div class="service">Snacks<br><span class="blue">On request</span></div></div></div><div class="card"><div class="small">NEXT ACTION</div><h2 style="margin:6px 0">Prepare garnishes</h2><div><span class="gold">17:00</span> · 5 min allocated</div></div><div class="card"><div class="small">CONVERSATION</div><div id="transcript" class="transcript">Say “Hello SAGE”, “What’s next?”, “What are today’s services?”, “Open Chef Mode”, or “Move dinner to 20:00”.</div><button class="mic" onclick="startListening()">●</button></div></div></section>
+<script>fetch('home.jpg.base64.txt?v=5',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('image data');return r.text()}).then(b=>{document.getElementById('homeArt').src='data:image/jpeg;base64,'+b.trim()}).catch(()=>{document.getElementById('homeArt').alt='Home artwork failed to load'});</script>
 <script src="app.js"></script><script>syncSage();</script></body></html>
