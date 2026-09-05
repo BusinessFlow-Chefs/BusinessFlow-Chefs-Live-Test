@@ -1,1 +1,120 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BusinessFlow Chefs — Chef Mode</title><style>*{box-sizing:border-box}html,body{margin:0;background:#020912}.phone{position:relative;width:min(100vw,430px);height:1720px;margin:auto;overflow:hidden;background:#020912}.ref{position:absolute;width:300%;max-width:none;left:-200%;top:-355px}.back{position:fixed;top:14px;left:14px;z-index:5;background:#071522dd;border:1px solid #d8a83e;color:#fff;border-radius:13px;padding:10px 14px;font:600 14px Arial}.next{position:fixed;bottom:14px;right:14px;z-index:5;background:#58b64f;color:#06100a;border:0;border-radius:13px;padding:12px 16px;font:700 14px Arial}</style></head><body><button class="back" onclick="location.href='dish-details.html'">← Dish Details</button><div class="phone"><img class="ref" src="https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-02f8-8210-bd6d-2490e07d4485/raw?se=2026-09-05T07%3A59%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=02785466-51d6-566e-abcd-98c46f422295&skoid=e32cbaad-a1eb-4299-9f16-1b364ab43781&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-04T23%3A16%3A49Z&ske=2026-09-05T23%3A16%3A49Z&sks=b&skv=2026-02-06&sig=bOHUTfEhIstJvbs/AYOCCBE75aJyYG0t8NAhO0BO1AA%3D" alt="Locked BusinessFlow Chef Mode design"></div><button class="next" onclick="location.href='micro-herbs.html'">Complete Step →</button></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020912">
+<title>BusinessFlow Chefs — Chef Mode</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#020912;color:#f6f3ed;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}body{min-height:100vh;background:radial-gradient(circle at 50% 8%,#173653 0,#081725 34%,#020912 78%)}button{font:inherit}.app{width:min(100%,430px);margin:auto;min-height:100vh;padding:18px 16px 34px}.top{display:flex;align-items:center;justify-content:space-between}.round{width:40px;height:40px;border-radius:50%;border:1px solid rgba(231,182,80,.46);background:#071522;color:#fff;display:grid;place-items:center;cursor:pointer}.brand{text-align:center}.brand small{display:block;color:#e7b650;font-size:9px;font-weight:900;letter-spacing:.2em}.brand strong{display:block;font-family:Georgia,serif;font-size:20px;font-weight:500;margin-top:3px}.focus{display:inline-block;margin:28px 0 10px;padding:6px 10px;border-radius:999px;background:#10263a;color:#a8d1ee;font-size:9px;font-weight:900;letter-spacing:.12em}.card{border:1px solid rgba(231,182,80,.46);background:linear-gradient(145deg,rgba(10,29,45,.98),rgba(4,15,25,.99));border-radius:24px;padding:20px;box-shadow:0 18px 42px rgba(0,0,0,.28)}.eyebrow{color:#e7b650;font-size:9px;font-weight:900;letter-spacing:.14em}.step-title{font-family:Georgia,serif;font-weight:500;font-size:31px;line-height:1.05;margin:8px 0 14px}.instruction{color:#d6dee5;font-size:14px;line-height:1.58}.timer{margin:20px 0 6px;text-align:center}.timer small{display:block;color:#8d9aa6;font-size:9px;font-weight:900;letter-spacing:.14em}.timer strong{display:block;margin-top:4px;font-size:42px;font-variant-numeric:tabular-nums;letter-spacing:.02em}.next-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:17px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08)}.next-row span{color:#8d9aa6;font-size:10px}.next-row b{font-size:12px;color:#f2c66d;text-align:right}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.btn{border:0;border-radius:16px;padding:14px 12px;font-weight:850;cursor:pointer}.primary{grid-column:1/-1;background:#e7b650;color:#07111b;font-size:15px}.secondary{background:#102338;color:#fff;border:1px solid rgba(255,255,255,.12)}.summary{margin-top:18px;border:1px solid rgba(255,255,255,.1);border-radius:19px;background:#071725;padding:16px}.summary-head{display:flex;justify-content:space-between;gap:10px;color:#93a3af;font-size:9px;font-weight:900;letter-spacing:.12em}.summary-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}.summary-row b{font-size:13px}.summary-row span{font-size:12px;color:#c2ccd4}.outcome{display:none;margin-top:18px;border:1px solid rgba(231,182,80,.5);border-radius:22px;background:linear-gradient(145deg,#0b2032,#05121e);padding:19px}.outcome.show{display:block}.outcome h2{font-family:Georgia,serif;font-weight:500;margin:0 0 7px;font-size:27px}.outcome p{color:#aab7c1;font-size:12px;line-height:1.5}.outcome .btn{width:100%;margin-top:9px}.served{background:#54bf82;color:#06120b}.notserved{background:#13283b;color:#fff;border:1px solid #566674}.result{display:none;margin-top:18px;padding:17px;border-radius:18px;background:#09211a;border:1px solid rgba(84,191,130,.38)}.result.show{display:block}.result h3{margin:0;color:#78d8a4}.result p{margin:6px 0 0;color:#b7c7c0;font-size:12px;line-height:1.45}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#0b1d2d;border:1px solid #3b4e5c;color:#fff;padding:10px 14px;border-radius:13px;font-size:11px;z-index:50}.empty{color:#aeb9c2;font-size:13px;line-height:1.5}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <button class="round" onclick="location.href='service-sequence.html'" aria-label="Back to Service Sequence">‹</button>
+    <div class="brand"><small>BUSINESSFLOW</small><strong>Chef Mode</strong></div>
+    <button class="round" onclick="speakCurrent()" aria-label="Read current step aloud">◖</button>
+  </header>
+
+  <div class="focus">FOCUSED WORKSPACE</div>
+  <section class="card" id="stepCard">
+    <div class="eyebrow" id="stepEyebrow">CURRENT STEP</div>
+    <h1 class="step-title" id="stepTitle">Loading…</h1>
+    <div class="instruction" id="instruction">BusinessFlow is loading the active dinner sequence.</div>
+    <div class="timer"><small id="timerLabel">STARTS IN</small><strong id="timer">--:--:--</strong></div>
+    <div class="next-row"><span>NEXT</span><b id="nextStep">—</b></div>
+  </section>
+
+  <div class="controls" id="stepControls">
+    <button class="btn secondary" onclick="location.href='service-sequence.html'">View sequence</button>
+    <button class="btn secondary" onclick="undoLast()">Undo</button>
+    <button class="btn primary" id="doneBtn" onclick="completeCurrent()">DONE — NEXT STEP</button>
+  </div>
+
+  <section class="summary">
+    <div class="summary-head"><span>LIVE SERVICE</span><span id="serviceStatus">PLANNED</span></div>
+    <div class="summary-row"><b>Dinner</b><span id="dinnerTime">19:30</span></div>
+    <div class="summary-row"><b>Guests</b><span id="guests">8</span></div>
+    <div class="summary-row"><b>Sea bass stock</b><span id="stock">12 portions</span></div>
+  </section>
+
+  <section class="outcome" id="outcome">
+    <h2>Service outcome</h2>
+    <p>Confirm what happened to the service so BusinessFlow can update inventory correctly.</p>
+    <button class="btn served" onclick="finishService('served')">SERVED — deduct used stock</button>
+    <button class="btn notserved" onclick="finishService('notServed')">NOT SERVED — return reserved stock</button>
+  </section>
+
+  <section class="result" id="result"><h3 id="resultTitle">Service updated</h3><p id="resultText"></p></section>
+</main>
+
+<script src="bf-core.js"></script>
+<script>
+const core=window.BusinessFlowCore;
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const instructions={
+  mise:'Set up the beurre blanc mise en place: shallot, white wine, vinegar, cold butter and seasoning ready at the station.',
+  veg:'Prepare and portion the vegetables for the full guest count. Keep final seasoning for service.',
+  station:'Set the fish station: pans hot-ready, oil, butter, thyme, garlic, trays, cloths and thermometer in position.',
+  pass:'Check plates, pass, sauces and garnish containers. Remove anything not required for this service.',
+  lead:'Start any components with the longest finishing time so they land together at service.',
+  fireVeg:'Fire vegetables. Cook to the planned finish point, hold only where quality is protected.',
+  fireProtein:'Fire sea bass. Skin side down first, control heat, baste and rest briefly before plating.',
+  finishSauce:'Finish and balance sauces. Check temperature and consistency before the final pass.',
+  finalPass:'Final pass: check plates, garnishes, temperatures and portion count before service.',
+  serve:'Serve dinner. Confirm every plate has left the pass, then record the service outcome.'
+};
+function fmt(ms){ms=Math.max(0,ms);const s=Math.floor(ms/1000);return `${pad(Math.floor(s/3600))}:${pad(Math.floor((s%3600)/60))}:${pad(s%60)}`}
+function toast(msg){const n=document.createElement('div');n.className='toast';n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),1700)}
+function activeStep(){
+  const state=core.getState(),svc=state.services.dinner;
+  if(['served','notServed'].includes(svc.status))return null;
+  const timeline=core.getTimeline('dinner'),now=Date.now();
+  return timeline.find(x=>x.status!=='done'&&x.at<=now)||timeline.find(x=>x.status!=='done')||null;
+}
+function render(){
+  const state=core.getState(),svc=state.services.dinner,item=state.inventory.items.seaBass;
+  const timeline=core.getTimeline('dinner');
+  const current=activeStep();
+  $('dinnerTime').textContent=svc.time;
+  $('guests').textContent=state.charter.guestCount;
+  $('stock').textContent=`${item.onHand} ${item.unit}`;
+  $('serviceStatus').textContent=(svc.status||'planned').replace(/([A-Z])/g,' $1').trim().toUpperCase();
+  const finished=['served','notServed'].includes(svc.status);
+  $('outcome').classList.toggle('show',!finished && !current);
+  $('result').classList.toggle('show',finished);
+  if(finished){
+    $('stepEyebrow').textContent='SERVICE COMPLETE';
+    $('stepTitle').textContent=svc.status==='served'?'Dinner served':'Dinner not served';
+    $('instruction').textContent=svc.status==='served'?'BusinessFlow deducted the reserved ingredients from inventory.':'BusinessFlow released the reserved ingredients back to available stock.';
+    $('timerLabel').textContent='STATUS';$('timer').textContent='COMPLETE';$('nextStep').textContent='Return Home';
+    $('doneBtn').disabled=true;$('doneBtn').textContent='SERVICE COMPLETE';
+    $('resultTitle').textContent=svc.status==='served'?'Inventory updated':'Stock returned';
+    $('resultText').textContent=`Sea bass on hand: ${item.onHand} ${item.unit}. Reserved: ${item.reserved} ${item.unit}.`;
+    return;
+  }
+  if(!current){
+    $('stepEyebrow').textContent='ALL STEPS COMPLETE';$('stepTitle').textContent='Confirm service outcome';
+    $('instruction').textContent='All preparation steps are complete. Record whether dinner was served so inventory can be reconciled.';
+    $('timerLabel').textContent='READY';$('timer').textContent='SERVE';$('nextStep').textContent='Service outcome below';
+    $('doneBtn').disabled=true;$('doneBtn').textContent='ALL STEPS COMPLETE';return;
+  }
+  const currentIndex=timeline.findIndex(x=>x.id===current.id);const next=timeline.slice(currentIndex+1).find(x=>x.status!=='done');
+  const left=current.at-Date.now();
+  $('stepEyebrow').textContent=left>0?'NEXT STEP':'CURRENT STEP';
+  $('stepTitle').textContent=current.label;
+  $('instruction').textContent=instructions[current.id]||'Complete this service step, then mark it done.';
+  $('timerLabel').textContent=left>0?'STARTS IN':'DUE NOW';$('timer').textContent=left>0?fmt(left):'00:00:00';
+  $('nextStep').textContent=next?next.label:'Service outcome';
+  $('doneBtn').disabled=false;$('doneBtn').textContent='DONE — NEXT STEP';
+}
+function completeCurrent(){const current=activeStep();if(!current)return;try{core.markStepDone('dinner',current.id);toast(`${current.label} completed`);render()}catch(e){toast(e.message||'Could not complete step')}}
+function finishService(outcome){try{core.completeService('dinner',outcome);toast(outcome==='served'?'Service served — stock deducted':'Not served — stock returned');render()}catch(e){toast(e.message||'Could not complete service')}}
+function undoLast(){core.undo();toast('Last change undone');render()}
+function speakCurrent(){const current=activeStep();if(!current||!('speechSynthesis' in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(`${current.label}. ${instructions[current.id]||''}`);u.lang='en-GB';u.rate=.96;speechSynthesis.speak(u)}catch(e){}}
+core.subscribe(render);render();setInterval(render,1000);
+</script>
+</body>
+</html>
