@@ -39,6 +39,17 @@ const library={
 function normal(v){return String(v||'').trim().toLowerCase();}
 function activeAllergies(state){return new Set((state.guests?.allergySummary||[]).map(a=>normal(a.label)));}
 function conflicts(dish,allergies){return (dish.allergens||[]).some(a=>allergies.has(normal(a)));}
+function allLibrary(){const out=[];Object.entries(library).forEach(([theme,dishes])=>dishes.forEach(d=>out.push({...clone(d),theme})));return out;}
+function sourceFocus(dish){
+  const tags=new Set((dish.tags||[]).map(normal));const name=normal(dish.name),focus=[];
+  if(tags.has('fish')||tags.has('shellfish')||/fish|salmon|cod|tuna|prawn|sea bass/.test(name))focus.push('Protein','Seafood');
+  if(tags.has('poultry')||/chicken|turkey/.test(name))focus.push('Protein','Poultry');
+  if(tags.has('meat')||/lamb|beef|venison/.test(name))focus.push('Protein','Meat');
+  if(tags.has('vegetarian')||tags.has('vegan')||/fruit|vegetable|salad|courgette|tomato|berries|mango|melon|avocado/.test(name))focus.push('Produce');
+  if(/yoghurt|feta|butter|egg/.test(name))focus.push('Chilled');
+  if(/bread|toast|granola|oat|couscous|cracker/.test(name))focus.push('Dry Store');
+  return [...new Set(focus)];
+}
 function choose(theme,meal,index,allergies){
   const source=library[theme]||library.Mediterranean;
   const safe=source.filter(d=>d.meal===meal&&!conflicts(d,allergies));
@@ -46,7 +57,7 @@ function choose(theme,meal,index,allergies){
   const pool=safe.length?safe:fallback;
   if(!pool.length)return {id:uid('dish'),name:`Chef's ${meal}`,meal,allergens:[],status:'draft'};
   const d=pool[index%pool.length];
-  return {id:uid('dish'),name:d.name,meal:d.meal,tags:clone(d.tags||[]),allergens:clone(d.allergens||[]),status:'draft',locked:false};
+  return {id:uid('dish'),name:d.name,meal:d.meal,tags:clone(d.tags||[]),allergens:clone(d.allergens||[]),status:'draft',locked:false,sourceFocus:sourceFocus(d)};
 }
 function buildDraft(theme){
   const state=core.getState();
@@ -75,12 +86,29 @@ function generate(theme){const state=core.getState();state.menu=buildDraft(theme
 function setTheme(theme){if(!library[theme])throw new Error('Unknown menu theme');const state=core.getState();state.menu.theme=theme;return saveState(state);}
 function findDish(state,dishId){for(const day of state.menu?.days||[]){for(const meal of Object.values(day.meals||{})){const dish=(meal||[]).find(d=>d.id===dishId);if(dish)return dish;}}return null;}
 function toggleLock(dishId){const state=core.getState(),dish=findDish(state,dishId);if(!dish)throw new Error('Dish not found');dish.locked=!dish.locked;state.menu.lockedDishIds=state.menu.lockedDishIds||[];state.menu.lockedDishIds=dish.locked?[...new Set([...state.menu.lockedDishIds,dishId])]:state.menu.lockedDishIds.filter(id=>id!==dishId);return saveState(state);}
-function replaceDish(dishId){
+function recommendAlternatives(dishId,options={}){
+  const state=core.getState(),dish=findDish(state,dishId);if(!dish)throw new Error('Dish not found');const allergies=activeAllergies(state),currentTheme=state.menu?.theme||'Mediterranean';
+  const wantedCategories=new Set((Array.isArray(options.categories)?options.categories:[options.category]).filter(Boolean).map(normal));
+  const wantedTags=new Set((options.tags||[]).map(normal));const count=Math.min(8,Math.max(3,Math.round(Number(options.count||5))));
+  return allLibrary().filter(c=>c.meal===dish.meal&&c.name!==dish.name&&!conflicts(c,allergies)).map(c=>{
+    let score=0,reasons=[];const focus=sourceFocus(c),focusNorm=focus.map(normal);
+    if(c.theme===currentTheme){score+=10;reasons.push('Matches current menu theme');}
+    if(wantedCategories.size){const hit=focusNorm.some(x=>wantedCategories.has(x));if(hit){score+=24;reasons.push('Matches sourcing category');}}
+    if(wantedTags.size){const hit=(c.tags||[]).map(normal).some(x=>wantedTags.has(x));if(hit){score+=16;reasons.push('Matches available ingredient type');}}
+    if(options.location){score+=2;reasons.push(`Suitable alternative for ${options.location}`);}
+    if(options.preferredSupplier){score+=3;reasons.push(`Can be considered with ${options.preferredSupplier}`);}
+    if((c.tags||[]).includes('vegan'))score+=1;
+    return {...clone(c),sourceFocus:focus,score,reasons};
+  }).sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name)).slice(0,count);
+}
+function replaceDish(dishId,candidateName){
   const state=core.getState(),allergies=activeAllergies(state),theme=state.menu?.theme||'Mediterranean';
-  for(const day of state.menu?.days||[]){for(const [meal,items] of Object.entries(day.meals||{})){const idx=(items||[]).findIndex(d=>d.id===dishId);if(idx<0)continue;if(items[idx].locked)throw new Error('Unlock the dish before replacing it');const source=(library[theme]||[]).filter(d=>d.meal===meal&&!conflicts(d,allergies)&&d.name!==items[idx].name);if(!source.length)throw new Error('No alternative safe dish available in this starter library');const pick=source[Math.floor(Math.random()*source.length)];items[idx]={id:uid('dish'),name:pick.name,meal,tags:clone(pick.tags||[]),allergens:clone(pick.allergens||[]),status:'draft',locked:false};return saveState(state);}}
+  for(const day of state.menu?.days||[]){for(const [meal,items] of Object.entries(day.meals||{})){const idx=(items||[]).findIndex(d=>d.id===dishId);if(idx<0)continue;if(items[idx].locked)throw new Error('Unlock the dish before replacing it');
+    let pool=allLibrary().filter(d=>d.meal===meal&&!conflicts(d,allergies)&&d.name!==items[idx].name);if(candidateName){const exact=pool.find(d=>d.name===candidateName);if(!exact)throw new Error('That alternative is not available or conflicts with guest requirements');pool=[exact];}else{const sameTheme=pool.filter(d=>d.theme===theme);if(sameTheme.length)pool=sameTheme;}
+    if(!pool.length)throw new Error('No alternative safe dish available in this starter library');const pick=pool[Math.floor(Math.random()*pool.length)];items[idx]={id:uid('dish'),name:pick.name,meal,tags:clone(pick.tags||[]),allergens:clone(pick.allergens||[]),status:'draft',locked:false,sourceFocus:sourceFocus(pick)};return saveState(state);}}
   throw new Error('Dish not found');
 }
 function validate(){const state=core.getState(),allergies=activeAllergies(state),issues=[];for(const day of state.menu?.days||[]){for(const [meal,items] of Object.entries(day.meals||{})){for(const dish of items||[]){const hits=(dish.allergens||[]).filter(a=>allergies.has(normal(a)));if(hits.length)issues.push({day:day.day,meal,dishId:dish.id,dish:dish.name,allergens:hits});}}}return issues;}
 function getThemes(){return Object.keys(library);}
-global.BusinessFlowMenu=Object.freeze({generate,setTheme,toggleLock,replaceDish,validate,getThemes});
+global.BusinessFlowMenu=Object.freeze({generate,setTheme,toggleLock,replaceDish,recommendAlternatives,validate,getThemes});
 })(window);
