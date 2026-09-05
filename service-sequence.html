@@ -1,1 +1,82 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BusinessFlow Chefs — Service Sequence</title><style>*{box-sizing:border-box}html,body{margin:0;background:#020912}.phone{position:relative;width:min(100vw,430px);height:1720px;margin:auto;overflow:hidden;background:#020912}.ref{position:absolute;width:300%;max-width:none;left:0;top:-355px}.tap{position:absolute;left:8%;right:8%;top:1450px;height:95px;border:0;background:transparent;cursor:pointer;z-index:2}.back{position:fixed;top:14px;left:14px;z-index:5;background:#071522dd;border:1px solid #d8a83e;color:#fff;border-radius:13px;padding:10px 14px;font:600 14px Arial}.next{position:fixed;bottom:14px;right:14px;z-index:5;background:#d39b16;color:#07111b;border:0;border-radius:13px;padding:12px 16px;font:700 14px Arial}</style></head><body><button class="back" onclick="location.href='index.html'">← Home</button><div class="phone"><img class="ref" src="https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-02f8-8210-bd6d-2490e07d4485/raw?se=2026-09-05T07%3A59%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=02785466-51d6-566e-abcd-98c46f422295&skoid=e32cbaad-a1eb-4299-9f16-1b364ab43781&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-04T23%3A16%3A49Z&ske=2026-09-05T23%3A16%3A49Z&sks=b&skv=2026-02-06&sig=bOHUTfEhIstJvbs/AYOCCBE75aJyYG0t8NAhO0BO1AA%3D" alt="Locked BusinessFlow Service Sequence design"><button class="tap" aria-label="Open dish details" onclick="location.href='dish-details.html'"></button></div><button class="next" onclick="location.href='dish-details.html'">Dish Details →</button></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020912">
+<title>BusinessFlow Chefs — Service Sequence</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#020912;color:#f5f3ee;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}body{min-height:100vh;background:radial-gradient(circle at 50% -10%,#12314a 0,#061522 32%,#020912 72%)}button{font:inherit}.app{width:min(100%,430px);margin:auto;min-height:100vh;padding:18px 16px 92px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.back,.icon{width:40px;height:40px;border-radius:50%;border:1px solid rgba(231,182,80,.46);background:#071522;color:#f5f3ee;display:grid;place-items:center;cursor:pointer}.title{text-align:center;flex:1}.title small{display:block;color:#e7b650;font-size:9px;font-weight:900;letter-spacing:.18em}.title strong{display:block;margin-top:3px;font-family:Georgia,serif;font-size:20px;font-weight:500}.service-card{border:1px solid rgba(231,182,80,.42);border-radius:20px;background:linear-gradient(145deg,rgba(9,28,44,.97),rgba(4,15,25,.98));padding:18px;box-shadow:0 16px 38px rgba(0,0,0,.24)}.service-line{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.service-line small{color:#96a6b4;font-size:10px;letter-spacing:.08em}.service-line h1{margin:4px 0 0;font-family:Georgia,serif;font-size:28px;font-weight:500}.time{font-size:27px;color:#e7b650;font-weight:800;font-variant-numeric:tabular-nums}.status{display:inline-flex;margin-top:12px;padding:6px 10px;border-radius:999px;background:#10263a;color:#9fcfff;font-size:10px;font-weight:800}.next{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.next small{color:#e7b650;font-size:9px;font-weight:900;letter-spacing:.14em}.next b{display:block;margin-top:4px;font-size:14px}.clock{text-align:right;font-variant-numeric:tabular-nums;font-size:20px;font-weight:800}.section-title{display:flex;align-items:center;justify-content:space-between;margin:26px 3px 10px;color:#aab7c2;font-size:10px;font-weight:900;letter-spacing:.13em}.section-title span:last-child{color:#e7b650}.steps{border:1px solid rgba(255,255,255,.09);border-radius:19px;overflow:hidden;background:rgba(5,18,29,.88)}.step{display:grid;grid-template-columns:54px 30px 1fr;gap:10px;align-items:center;padding:14px 13px;border-bottom:1px solid rgba(255,255,255,.075)}.step:last-child{border-bottom:0}.step time{font-size:12px;color:#a9b8c5;font-variant-numeric:tabular-nums}.dot{width:26px;height:26px;border-radius:50%;border:1px solid #425461;display:grid;place-items:center;color:#7d8c96;font-size:12px}.step b{font-size:13px}.step small{display:block;margin-top:3px;color:#8393a0;font-size:9px}.step.done{opacity:.52}.step.done .dot{background:#285d46;border-color:#4cb681;color:#d6ffe9}.step.current{background:linear-gradient(90deg,rgba(231,182,80,.12),transparent)}.step.current .dot{border-color:#e7b650;color:#e7b650;box-shadow:0 0 14px rgba(231,182,80,.2)}.step.current b{color:#f1c86f}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.btn{border:0;border-radius:15px;padding:13px 14px;font-weight:800;cursor:pointer}.btn.primary{background:#e7b650;color:#08121b}.btn.secondary{background:#102338;color:#f4f1ea;border:1px solid rgba(255,255,255,.12)}.btn.wide{grid-column:1/-1}.footer-note{text-align:center;color:#71818e;font-size:9px;margin-top:15px;line-height:1.45}.sheet{position:fixed;inset:0;background:rgba(0,6,12,.82);display:none;align-items:flex-end;justify-content:center;padding:16px;z-index:30}.sheet.show{display:flex}.panel{width:min(100%,430px);background:linear-gradient(#0b1d2d,#06121d);border:1px solid #344754;border-radius:24px;padding:20px}.panel h2{font-family:Georgia,serif;font-weight:500;margin:0 0 14px}.field{width:100%;padding:13px;border-radius:14px;border:1px solid #344754;background:#081724;color:#fff;font-size:17px}.panel-actions{display:flex;gap:10px;margin-top:14px}.panel-actions .btn{flex:1}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0b1d2d;border:1px solid #3c4e5b;color:#fff;padding:10px 14px;border-radius:13px;font-size:11px;z-index:50;box-shadow:0 12px 34px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <button class="back" onclick="location.href='index.html'" aria-label="Back to Home">‹</button>
+    <div class="title"><small>TODAY'S SERVICE</small><strong>Service Sequence</strong></div>
+    <button class="icon" onclick="openTimeSheet()" aria-label="Change service time">◷</button>
+  </header>
+
+  <section class="service-card">
+    <div class="service-line">
+      <div><small>ACTIVE SERVICE</small><h1 id="serviceName">Dinner</h1></div>
+      <div class="time" id="serviceTime">19:30</div>
+    </div>
+    <span class="status" id="serviceStatus">PLANNED</span>
+    <div class="next">
+      <div><small>NEXT ACTION</small><b id="nextTitle">Calculating…</b></div>
+      <div class="clock" id="nextClock">--:--:--</div>
+    </div>
+  </section>
+
+  <div class="section-title"><span>PREP → SERVICE</span><span id="guestCount">8 GUESTS</span></div>
+  <section class="steps" id="steps"></section>
+
+  <div class="controls">
+    <button class="btn secondary" onclick="openTimeSheet()">Change dinner time</button>
+    <button class="btn secondary" onclick="undoLast()">Undo last change</button>
+    <button class="btn primary wide" onclick="location.href='chef-mode.html'">Start Chef Mode →</button>
+  </div>
+  <div class="footer-note">All timings on this screen come from the same BusinessFlow core used by Home and Chef Mode.</div>
+</main>
+
+<div class="sheet" id="timeSheet" role="dialog" aria-modal="true">
+  <div class="panel">
+    <h2>Change dinner time</h2>
+    <input class="field" id="timeInput" type="time" step="300">
+    <div class="panel-actions"><button class="btn secondary" onclick="closeTimeSheet()">Cancel</button><button class="btn primary" onclick="saveDinnerTime()">Update timeline</button></div>
+  </div>
+</div>
+
+<script src="bf-core.js"></script>
+<script>
+const core=window.BusinessFlowCore;
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+function formatAt(ms){const d=new Date(ms);return `${pad(d.getHours())}:${pad(d.getMinutes())}`}
+function fmt(ms){ms=Math.max(0,ms);const s=Math.floor(ms/1000);return `${pad(Math.floor(s/3600))}:${pad(Math.floor((s%3600)/60))}:${pad(s%60)}`}
+function toast(msg){const n=document.createElement('div');n.className='toast';n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),1700)}
+function render(){
+  const state=core.getState(),svc=state.services.dinner,timeline=core.getTimeline('dinner'),now=Date.now();
+  $('serviceName').textContent=svc.label;
+  $('serviceTime').textContent=svc.time;
+  $('serviceStatus').textContent=(svc.status||'planned').replace(/([A-Z])/g,' $1').trim().toUpperCase();
+  $('guestCount').textContent=`${state.charter.guestCount} GUESTS`;
+  const next=timeline.find(x=>x.status!=='done'&&x.at>=now-1000)||timeline.find(x=>x.status!=='done');
+  $('nextTitle').textContent=next?next.label:(['served','notServed'].includes(svc.status)?'Service complete':'Ready to serve');
+  $('nextClock').textContent=next?(next.at<=now?'DUE':fmt(next.at-now)):'--:--:--';
+  $('steps').innerHTML=timeline.map(step=>{
+    const isDone=step.status==='done';
+    const isCurrent=!isDone&&next&&step.id===next.id;
+    return `<div class="step ${isDone?'done':''} ${isCurrent?'current':''}"><time>${formatAt(step.at)}</time><span class="dot">${isDone?'✓':isCurrent?'●':'·'}</span><div><b>${step.label}</b><small>${isDone?'Completed':isCurrent?'Current / next action':'Scheduled'}</small></div></div>`;
+  }).join('');
+}
+function openTimeSheet(){const s=core.getState();$('timeInput').value=s.services.dinner.time;$('timeSheet').classList.add('show')}
+function closeTimeSheet(){$('timeSheet').classList.remove('show')}
+function saveDinnerTime(){try{core.changeServiceTime('dinner',$('timeInput').value);closeTimeSheet();toast('Dinner timeline recalculated');render()}catch(e){toast(e.message||'Could not update time')}}
+function undoLast(){core.undo();toast('Last change undone');render()}
+$('timeSheet').addEventListener('click',e=>{if(e.target.id==='timeSheet')closeTimeSheet()});
+core.subscribe(render);render();setInterval(render,1000);
+</script>
+</body>
+</html>
