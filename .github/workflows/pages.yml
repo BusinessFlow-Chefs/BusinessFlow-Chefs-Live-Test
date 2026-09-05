@@ -31,6 +31,7 @@ jobs:
           node --check bf-core.js
           node --check bf-platform.js
           node --check bf-menu.js
+          node --check bf-menu-themes.js
           node --check bf-recipes.js
           node --check bf-stock.js
           node --check bf-sourcing.js
@@ -48,7 +49,10 @@ jobs:
           test -f suppliers.html
           grep -q 'bf-core.js' index.html
           grep -q 'bf-core.js' menu-builder.html
+          grep -q 'bf-menu-themes.js' menu-builder.html
           grep -q 'getNightThemes' bf-menu.js
+          grep -q 'French Riviera Night' bf-menu-themes.js
+          grep -q 'Chef’s Tasting Menu' bf-menu-themes.js
           grep -q 'bf-recipes.js' dish-details.html
           grep -q 'bf-stock.js' inventory.html
           grep -q 'bf-stock.js' provisioning.html
