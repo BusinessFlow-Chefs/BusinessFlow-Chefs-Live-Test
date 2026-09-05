@@ -33,11 +33,24 @@ jobs:
           node --check app.js
           test -f manifest.webmanifest
           test -f sw.js
+          test -f SECURITY.md
           grep -q 'bf-core.js' index.html
           grep -q 'bf-core.js' service-sequence.html
           grep -q 'bf-core.js' chef-mode.html
           if grep -R -n 'oaiusercontent.com\|sdmntprdenmarkeast' index.html service-sequence.html chef-mode.html; then
             echo 'Temporary external visual URL found in core operational flow.'
+            exit 1
+          fi
+          if grep -R -nE 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|github_pat_[A-Za-z0-9_]+|ghp_[A-Za-z0-9]+|AIza[0-9A-Za-z_-]{20,}|sk-[0-9A-Za-z_-]{20,}' --include='*.js' --include='*.html' --include='*.json' --include='*.webmanifest' .; then
+            echo 'Possible credential or private key found in deployable source.'
+            exit 1
+          fi
+          if grep -R -nE '<script[^>]+src=["'"']https?://' --include='*.html' .; then
+            echo 'Remote script dependency found. Review and explicitly approve before deployment.'
+            exit 1
+          fi
+          if grep -R -nE '\beval\s*\(|new Function\s*\(|document\.write\s*\(' --include='*.js' --include='*.html' .; then
+            echo 'Unsafe dynamic code execution pattern found.'
             exit 1
           fi
 
