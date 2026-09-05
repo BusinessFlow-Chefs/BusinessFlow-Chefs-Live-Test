@@ -1,0 +1,1 @@
+Approved Home artwork source is the locked BusinessFlow Home screenshot. Binary asset upload is being replaced with the verified permanent repository asset, not a temporary URL.
