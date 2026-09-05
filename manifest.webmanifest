@@ -1,0 +1,13 @@
+{
+  "name": "BusinessFlow Chefs",
+  "short_name": "BusinessFlow",
+  "description": "Operational AI workspace for private yacht and charter chefs.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020912",
+  "theme_color": "#020912",
+  "lang": "en-GB",
+  "categories": ["business", "productivity", "food"]
+}
