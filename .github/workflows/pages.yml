@@ -45,7 +45,7 @@ jobs:
             echo 'Possible credential or private key found in deployable source.'
             exit 1
           fi
-          if grep -R -nE '<script[^>]+src=["'"']https?://' --include='*.html' .; then
+          if grep -R -nE "<script[^>]+src=['\"]https?://" --include='*.html' .; then
             echo 'Remote script dependency found. Review and explicitly approve before deployment.'
             exit 1
           fi
