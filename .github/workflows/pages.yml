@@ -30,9 +30,9 @@ jobs:
           set -e
           rm -rf site
           mkdir -p site/assets
-          cp index.html style.css app.js site/
-          cp assets/home-master.jpg site/assets/home-master.jpg
-          test -s site/assets/home-master.jpg
+          cp *.html style.css app.js site/
+          if [ -f assets/home-master.jpg ]; then cp assets/home-master.jpg site/assets/home-master.jpg; fi
+          if [ -f home.jpg.base64.txt ]; then cp home.jpg.base64.txt site/; fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
