@@ -67,7 +67,23 @@ function neutraliseLegacyDemoState(){
   }
 }
 
+function applyUnifiedVisualSystem(){
+  try{
+    const path=(location.pathname||'').replace(/\/+$/,'');
+    const isHome=path===''||path==='/'||/\/index\.html$/i.test(path);
+    if(isHome)return;
+    document.documentElement.classList.add('bf-home-system');
+    if(document.querySelector('link[data-bf-unified]'))return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='bf-unified.css?v=1';
+    link.dataset.bfUnified='true';
+    document.head.appendChild(link);
+  }catch(e){}
+}
+
 neutraliseLegacyDemoState();
+applyUnifiedVisualSystem();
 
 const ROLE_PERMISSIONS={
   chef:new Set(['charter:read','charter:write','guest:read','guest:write','menu:read','menu:write','recipe:read','recipe:write','service:read','service:write','inventory:read','inventory:write','provisioning:read','provisioning:write','notifications:read','notifications:write']),
