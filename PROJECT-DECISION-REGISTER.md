@@ -105,6 +105,39 @@ Non-chef/general business tasks will be placed later only after Darren decides w
 
 ---
 
+## APPROVED / ESTABLISHED AI-POWERED FEATURE NAMES
+**Status: PRESERVE — DO NOT GENERICISE AWAY**
+
+These names and concepts are part of the BusinessFlow Chefs product identity and must remain visible in product architecture, feature pages, onboarding/marketing, and relevant workflows. Do not replace them with bland generic labels without Darren's approval.
+
+Established names:
+- **Smart Provisioning** — flagship AI provisioning workflow connecting menu, guests, stock and local sourcing.
+- **Smart Snack Planner** / **Smart Snacks** — guest/allergy-aware snack planning using onboard stock first and updating provisioning when needed.
+- **Guest Memory** — remembers guest preferences, allergies, dislikes, feedback and special dates for future charters.
+- **Galley Copilot** — conversational/voice AI assistant concept used across the chef workflow.
+- **Staff Provisioning** — crew/staff meals, snacks and drinks connected to stock and budgets.
+- **Smart Leftovers / Reuse Planner** — identifies safe, useful reuse opportunities and reduces waste.
+- **End-of-Day Auto Close** — closes out completed service/day activity automatically.
+- **Crew Requests Inbox** — captures and manages crew requests.
+- **Guest Change Impact** — shows how guest changes affect menus, stock, prep and provisioning.
+- **Tomorrow Prepared Tonight** — prepares the next day's information/actions ahead of time.
+- **Offline Full-Day Mode** — ensures the full working day is available at sea/offline.
+- **Galley Memory** — retains useful operational knowledge from prior galley use.
+- **Chef Personal Routine** — adapts to the individual chef's preferred working routine.
+- **16-Hour Day Mode** — long-day operational mode; this is the current approved name replacing the earlier 15-Hour wording.
+- **Chef-Editable AI Menus** — AI menus that can be locked, regenerated or changed dish-by-dish while respecting allergies/dietary rules.
+- **Voice-Controlled Stock Updates** — stock changes by voice during active galley work.
+- **Offline-First Operation** — saved chef data remains available without connection and syncs when online.
+
+Shopping naming clarification:
+- Shopping-list generation is an established part of **Smart Provisioning**: menu/guest needs are cross-checked against inventory to produce what must be bought.
+- `Smart Shopping` has been discussed/referred to conversationally, but it is **not yet treated as a separately locked final module name** in this register. Do not present it as locked until Darren explicitly confirms whether `Smart Shopping` should become its own branded feature or remain inside Smart Provisioning.
+
+Connected product flow to preserve:
+`Guest -> Menu -> Recipe -> Stock -> Smart Provisioning -> Local Sourcing`
+
+---
+
 ## SERVICE / MENU STRUCTURE
 **Status: APPROVED**
 - Core daily services: Breakfast, Lunch, Dinner.
