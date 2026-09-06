@@ -8,6 +8,16 @@ This file is the persistent source of truth for approved BusinessFlow Chefs prod
 - A generated concept is NOT approved merely because it was shown.
 - Existing/legacy repository pages are NOT visual references unless explicitly confirmed.
 - If a detail is marked PENDING, do not invent a final decision.
+- Never treat conversational recall alone as proof that something was approved.
+- When there is any conflict between an old file/generated screen and an explicit recorded approval, the explicit approval wins.
+
+## Conversation continuity / audit rule
+- The project must not depend on a chat retaining every prior turn perfectly.
+- Every explicit approval, rejection, lock, and requested correction that affects the product must be written into this register or a screen-specific lock file before further implementation.
+- Before declaring a screen approved, compare it against this register and the user-confirmed visual reference.
+- Older generated screens are provisional until their individual elements are checked against recorded approvals.
+- No currently existing repository screen should be assumed fully approved merely because it is deployed or functional.
+- When Darren identifies a regression, treat it as evidence that the affected screen needs an approval audit rather than silently carrying its current state forward.
 
 ---
 
@@ -42,6 +52,7 @@ These are approved adjustments to the locked Home, not permission to redesign it
 - Preserve the enlarged metallic-gold centre navigation button that Darren liked in the original.
 - Restore the original premium platinum / metallic-gold treatment rather than generic blue/green replacements.
 - Time-critical information should use a clearly differentiated colour treatment so urgency is immediately visible.
+- Reduce the visual size/scale of the yacht in the hero composition; the yacht must not dominate the Home screen or look oversized.
 
 ### Home items still to review
 - Exact numbers and metric labels shown inside the three main operational boxes are **NOT YET APPROVED** and must be reviewed by Darren.
