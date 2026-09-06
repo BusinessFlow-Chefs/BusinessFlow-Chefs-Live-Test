@@ -53,9 +53,12 @@ These are approved adjustments to the locked Home, not permission to redesign it
 - Restore the original premium platinum / metallic-gold treatment rather than generic blue/green replacements.
 - Time-critical information should use a clearly differentiated colour treatment so urgency is immediately visible.
 - Reduce the visual size/scale of the yacht in the hero composition; the yacht must not dominate the Home screen or look oversized.
+- Temperature and location should sit directly on the hero image with **no surrounding box** and blend into the photograph.
+- Home yacht imagery should rotate to a different premium yacht image each day; use a curated image library rather than uncontrolled live AI generation at launch.
 
 ### Home items still to review
 - Exact numbers and metric labels shown inside the three main operational boxes are **NOT YET APPROVED** and must be reviewed by Darren.
+- Exact permanent bottom-navigation labels/count remain **PENDING**. Seven options at the bottom were explicitly rejected. Preserve the enlarged gold centre button concept.
 
 ---
 
@@ -144,6 +147,32 @@ Connected product flow to preserve:
 - Dinner is 3 courses: Starter -> Main -> Dessert.
 - Snacks/additional meals are optional, not mandatory.
 - Avoid automatically pairing seafood/fish starter with seafood/fish main unless chef overrides.
+
+---
+
+## CROSS-SCREEN DATA CONSISTENCY
+**Status: APPROVED**
+- Information shown on Home must carry through visibly to the next screen.
+- Example explicitly approved: if Home says `2 low stock`, Inventory/Smart Provisioning must highlight those same 2 low-stock items prominently on entry.
+- Counts, alerts, service times, next-action state and guest/menu context must not reset or contradict each other between screens.
+
+---
+
+## SERVICE SEQUENCE VISUAL DIRECTION
+**Status: OLD UTILITY PAGE REJECTED; PREMIUM FAMILY REQUIRED**
+- The plain legacy Service Sequence page with simple left/right cards is rejected as the visual target.
+- Service Sequence must follow the same premium yacht / deep navy / platinum / metallic-gold design family as Home, Charter, Guests, Menu Builder, Recipes and Chef Mode.
+- Service Sequence should visibly carry service timing, prep steps, recipe access and Chef Mode handoff.
+
+---
+
+## CHARTER — CURRENT CHECKPOINT
+**Status: ACTIVE CONTENDER — NOT YET FULLY LOCKED**
+- Work has now moved from Home to Charter.
+- Current Charter contender shown 6 September 2026 uses the same premium yacht / deep navy / metallic-gold visual family.
+- Current visible structure includes: Charter name, vessel, departure, destination, start/end dates, guest count, budget, service structure, Create Charter, and Continue to Guests.
+- This current contender is a review checkpoint only; do not claim the exact layout/content is locked until Darren explicitly approves it.
+- Core services remain Breakfast, Lunch, Dinner; Snacks/Extras are optional and must not be treated as mandatory.
 
 ---
 
